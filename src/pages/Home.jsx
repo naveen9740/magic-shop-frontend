@@ -1,8 +1,12 @@
-import { Announcement } from "../components/Announcement";
-import { Categories } from "../components/Categories";
-import { Navbar } from "../components/Navbar";
-import { Products } from "../components/Products";
-import { Slider } from "../components/Slider";
+import {
+  Announcement,
+  Navbar,
+  Slider,
+  Categories,
+  Products,
+  Newsletter,
+  Footer,
+} from "../components";
 
 export const Home = () => {
   return (
@@ -12,6 +16,8 @@ export const Home = () => {
       <Slider />
       <Categories />
       <Products />
+      <Newsletter />
+      <Footer />
     </div>
   );
 };

@@ -75,3 +75,33 @@ export const popularProducts = [
     img: "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
   },
 ];
+
+export const newsletter = [
+  {
+    id: 1,
+    title: "Newsletter",
+    desc: "Get timely updates from your favourite products",
+  },
+];
+
+export const footer = [
+  {
+    logo: "magicShop",
+    desc: `magicShop, 'India ka Fashion Capital', is your one-stop fashion destination for anything and everything you need to look good`,
+    title1: "Useful Links",
+    links: [
+      "Home",
+      "Cart",
+      "Man Fashion",
+      "Woman Fashion",
+      "Accessories",
+      "My Account",
+      "Orders",
+      "Wishlist",
+      "Terms",
+    ],
+    title2: "Contact",
+    contacts: ["+91 9740238293", "naveen.kamath002@gmail.com"],
+    img: "https://i.ibb.co/Qfvn4z6/payment.png",
+  },
+];
