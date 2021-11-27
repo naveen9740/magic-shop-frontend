@@ -1,9 +1,10 @@
 import "./App.css";
 import { Home } from "./pages/Home";
 import { ProductList } from "./pages/ProductList";
+import { SingleProductPage } from "./pages/SingleProductPage";
 
 const App = () => {
-  return <ProductList />;
+  return <SingleProductPage />;
 };
 
 export default App;
