@@ -1,10 +1,8 @@
 import "./App.css";
-import { Home } from "./pages/Home";
-import { ProductList } from "./pages/ProductList";
-import { SingleProductPage } from "./pages/SingleProductPage";
+import { Home, Login, ProductList, Register, SingleProductPage } from "./pages";
 
 const App = () => {
-  return <SingleProductPage />;
+  return <Login />;
 };
 
 export default App;
