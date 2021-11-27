@@ -105,3 +105,14 @@ export const footer = [
     img: "https://i.ibb.co/Qfvn4z6/payment.png",
   },
 ];
+
+export const productListPage = [
+  {
+    title: "Dresses",
+    filterText: "Filter Products",
+    sortText: "Sort Products",
+    filterOptions1: ["white", "Black", "Red", "Blue", "Yellow", "Green"],
+    filterOptions2: ["XS", "S", "M", "L", "XL"],
+    sortOptions: ["Newest", "Price(asc)", "Price(desc)"],
+  },
+];
