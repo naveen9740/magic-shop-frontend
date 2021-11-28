@@ -1,10 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { Announcement, Footer, Navbar, Newsletter } from "../components";
+import { mobile } from "../responsive";
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -13,10 +15,12 @@ const Img = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+  ${mobile({ height: "40%" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${mobile({ padding: "10px" })}
 `;
 const Title = styled.h1`
   font-weight: 200;
@@ -33,6 +37,7 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px 0px;
+  ${mobile({ width: "100%" })}
 `;
 const Filter = styled.div`
   display: flex;
@@ -60,6 +65,7 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 40%;
+  ${mobile({ width: "100%" })}
 `;
 const QuantityContainer = styled.div`
   display: flex;
@@ -94,7 +100,7 @@ export const SingleProductPage = () => {
       <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></Img>
+          <Img src="https://i.ibb.co/ypz1S9R/imgggg.png"></Img>
         </ImgContainer>
         <InfoContainer>
           <Title>Denim</Title>
