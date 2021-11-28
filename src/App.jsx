@@ -1,7 +1,15 @@
 import "./App.css";
+import {
+  Cart,
+  Home,
+  Login,
+  ProductList,
+  Register,
+  SingleProductPage,
+} from "./pages";
 
 const App = () => {
-  return <div>Hello</div>;
+  return <Home />;
 };
 
 export default App;
