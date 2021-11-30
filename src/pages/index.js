@@ -4,3 +4,4 @@ export { ProductList } from "./ProductList";
 export { Register } from "./Register";
 export { SingleProductPage } from "./SingleProductPage";
 export { Cart } from "./Cart";
+export { NotFound } from "./NotFound";
