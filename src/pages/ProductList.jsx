@@ -67,7 +67,7 @@ export const ProductList = () => {
         ) => {
           return (
             <div key={index}>
-              <Title>{title}</Title>
+              <Title>{`${cat}'s Category`}</Title>
               <FilterContainer>
                 <Filter>
                   <FilterText>{filterText}</FilterText>

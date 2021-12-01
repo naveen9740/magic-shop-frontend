@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Product } from "./Product";
-import { productsData } from "../data";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
   padding: 20px;
@@ -14,14 +14,11 @@ const Container = styled.div`
 export const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
-          cat
-            ? `http://localhost:5000/api/v1/products?category=${cat}`
-            : `http://localhost:5000/api/v1/products`
+        const res = await publicRequest.get(
+          cat ? `/products?category=${cat}` : `/products`
         );
 
         setProducts(res.data.products);
@@ -42,7 +39,6 @@ export const Products = ({ cat, filters, sort }) => {
         })
       );
   }, [cat, filters, products]);
-  console.log({ sort });
   useEffect(() => {
     if (sort === "newest") {
       setFilteredProducts((prev) =>

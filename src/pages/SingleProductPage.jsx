@@ -1,7 +1,11 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import styled from "styled-components";
 import { Announcement, Footer, Navbar, Newsletter } from "../components";
 import { mobile } from "../responsive";
+import { publicRequest } from "../requestMethods";
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
@@ -94,45 +98,79 @@ const Button = styled.button`
 `;
 
 export const SingleProductPage = () => {
+  const { pathname } = useLocation();
+  const id = pathname.split("/")[2];
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  console.log({ color, size });
+  const [product, setProduct] = useState();
+  useEffect(() => {
+    console.log("entt");
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get(`/products/find/${id}`);
+        setProduct(res.data.product);
+        console.log({ res });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
+  }, [id]);
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      return quantity > 1 && setQuantity(quantity - 1);
+    }
+    setQuantity(quantity + 1);
+  };
   return (
     <Container>
       <Announcement />
       <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Img src="https://i.ibb.co/ypz1S9R/imgggg.png"></Img>
+          <Img src={product?.img}></Img>
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In iure
-            consequuntur deserunt molestias sint illum hic assumenda
-            exercitationem, fugit quam.
-          </Desc>
-          <Price>200INR</Price>
+          <Title>{product?.title}</Title>
+          <Desc>{product?.desc}</Desc>
+          <Price>{`₹${product?.price}`}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {product?.color?.map((color, index) => {
+                return (
+                  <FilterColor
+                    color={color}
+                    key={index}
+                    onClick={() => setColor(color)}
+                  />
+                );
+              })}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product?.size.map((size, index) => {
+                  return (
+                    <FilterSizeOption key={index}>{size}</FilterSizeOption>
+                  );
+                })}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <QuantityContainer>
-              <Remove />
-              <Quantity>1</Quantity>
-              <Add />
+              <Remove
+                onClick={() => handleQuantity("dec")}
+                style={{ cursor: "pointer" }}
+              />
+              <Quantity>{quantity}</Quantity>
+              <Add
+                onClick={() => handleQuantity("inc")}
+                style={{ cursor: "pointer" }}
+              />
             </QuantityContainer>
             <Button>Add to Cart</Button>
           </AddContainer>
