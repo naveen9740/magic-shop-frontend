@@ -6,7 +6,7 @@ import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 const KEY =
   "pk_test_51K1Dd8SErN4FR2QR8Xk165CTUeMK6YY0h6gvEcztILZl0WK1sFFClqiY5b0jPVDSaWa6jHb2LEZEW05eLdyvv5DU00K1pOLHoC";
 
@@ -143,9 +143,12 @@ export const Cart = () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: token.id,
-          amount: cart.total * 100,
+          amount: cart.total,
         });
-        navigate("/success", { data: res.data });
+        console.log(res.data);
+        navigate("/success", {
+          state: { stripeData: res.data?.stripeRes, products: cart },
+        });
       } catch (error) {
         console.log(error);
       }

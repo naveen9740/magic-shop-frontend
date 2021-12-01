@@ -63,6 +63,9 @@ const MenuItem = styled.div`
 `;
 export const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser?.others.username);
+
   return (
     <Container>
       <Wrapper>
@@ -79,8 +82,17 @@ export const Navbar = () => {
           </Link>
         </Center>
         <Right>
-          <MenuItem>Register</MenuItem>
-          <MenuItem>Sign-In</MenuItem>
+          {currentUser ? (
+            <MenuItem>{`Welcome ${currentUser?.others.username}`}</MenuItem>
+          ) : (
+            <MenuItem>Register</MenuItem>
+          )}
+
+          {currentUser ? (
+            <MenuItem>Sign-Out</MenuItem>
+          ) : (
+            <MenuItem>Sign-In</MenuItem>
+          )}
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">
