@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -38,6 +41,10 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  &:disabled {
+    color: green;
+    cursor: not-allowed;
+  }
 `;
 
 const Link = styled.div`
@@ -47,24 +54,56 @@ const Link = styled.div`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: red;
+`;
+
 export const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(username, password);
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
+  const { isFetching, error } = useSelector((state) => state?.user);
   return (
     <Container>
       <Wrapper>
         <Title>Login to your Account</Title>
         <Form>
-          <Input type="email" placeholder="Email" required />
           <Input
-            type="password"
-            minLength="4"
-            maxLength="7"
+            type="text"
+            placeholder="username"
+            required
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="text"
             placeholder="Password"
             required
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Button>LOGIN</Button>
+          <Button onClick={handleClick} disabled={isFetching}>
+            LOGIN
+          </Button>
+          {error && <Error>Something went Wrong</Error>}
           <Link>Forgot Password</Link>
           <Link>Create Account</Link>
         </Form>
+        <Button
+          onClick={() => {
+            document.getElementById("username").value = "admin";
+            document.getElementById("password").value = "admin123";
+            setUsername("admin");
+            setPassword("admin123");
+          }}
+        >
+          Autofill with Test Credentials
+        </Button>
       </Wrapper>
     </Container>
   );

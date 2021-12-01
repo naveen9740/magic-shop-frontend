@@ -1,10 +1,4 @@
-import {
-  Facebook,
-  Instagram,
-  LinkedIn,
-  Phone,
-  Twitter,
-} from "@material-ui/icons";
+import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
 import styled from "styled-components";
 import { footer } from "../data";
 import { mobile } from "../responsive";
@@ -75,9 +69,9 @@ export const Footer = () => {
   return (
     <>
       {footer.map(
-        ({ id, logo, desc, title1, title2, links, contacts, img }) => {
+        ({ id, logo, desc, title1, title2, links, contacts, img }, index) => {
           return (
-            <Container key={id}>
+            <Container key={index}>
               <Left>
                 <Logo>{logo}</Logo>
                 <Desc>{desc}</Desc>
@@ -99,15 +93,15 @@ export const Footer = () => {
               <Center>
                 <Title>{title1}</Title>
                 <List>
-                  {links.map((item) => {
-                    return <ListItem>{item}</ListItem>;
+                  {links.map((item, index) => {
+                    return <ListItem key={index}>{item}</ListItem>;
                   })}
                 </List>
               </Center>
               <Right>
                 <Title>{title2}</Title>
-                {contacts.map((item) => {
-                  return <ContactItem>{item}</ContactItem>;
+                {contacts.map((item, index) => {
+                  return <ContactItem key={index}>{item}</ContactItem>;
                 })}
                 <Payment src={img} />
               </Right>
