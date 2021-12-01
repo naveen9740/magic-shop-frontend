@@ -61,6 +61,7 @@ const Error = styled.span`
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  console.log(username, password);
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
@@ -76,12 +77,14 @@ export const Login = () => {
             type="text"
             placeholder="username"
             required
+            id="username"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            type="password"
+            type="text"
             placeholder="Password"
             required
+            id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleClick} disabled={isFetching}>
@@ -91,6 +94,16 @@ export const Login = () => {
           <Link>Forgot Password</Link>
           <Link>Create Account</Link>
         </Form>
+        <Button
+          onClick={() => {
+            document.getElementById("username").value = "admin";
+            document.getElementById("password").value = "admin123";
+            setUsername("admin");
+            setPassword("admin123");
+          }}
+        >
+          Autofill with Test Credentials
+        </Button>
       </Wrapper>
     </Container>
   );

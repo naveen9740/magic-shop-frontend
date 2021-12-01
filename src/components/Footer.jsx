@@ -1,10 +1,4 @@
-import {
-  Facebook,
-  Instagram,
-  LinkedIn,
-  Phone,
-  Twitter,
-} from "@material-ui/icons";
+import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
 import styled from "styled-components";
 import { footer } from "../data";
 import { mobile } from "../responsive";

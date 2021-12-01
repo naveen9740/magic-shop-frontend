@@ -6,7 +6,7 @@ import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 const KEY =
   "pk_test_51K1Dd8SErN4FR2QR8Xk165CTUeMK6YY0h6gvEcztILZl0WK1sFFClqiY5b0jPVDSaWa6jHb2LEZEW05eLdyvv5DU00K1pOLHoC";
 
@@ -154,7 +154,7 @@ export const Cart = () => {
       }
     };
     token && makeReq();
-  }, [token, cart.total]);
+  }, [token, cart, cart?.total, navigate]);
   return (
     <Container>
       <Announcement />
