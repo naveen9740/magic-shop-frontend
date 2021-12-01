@@ -7,6 +7,7 @@ import {
   Register,
   SingleProductPage,
   NotFound,
+  Success,
 } from "./pages";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 
@@ -25,6 +26,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
 
       <Route path="/register" element={<Register />} />
+      <Route path="/success" element={<Success />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

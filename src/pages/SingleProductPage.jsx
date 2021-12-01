@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { Announcement, Footer, Navbar, Newsletter } from "../components";
 import { mobile } from "../responsive";
 import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -105,6 +107,8 @@ export const SingleProductPage = () => {
   const [size, setSize] = useState("");
   console.log({ color, size });
   const [product, setProduct] = useState();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     console.log("entt");
     const getProduct = async () => {
@@ -123,6 +127,11 @@ export const SingleProductPage = () => {
       return quantity > 1 && setQuantity(quantity - 1);
     }
     setQuantity(quantity + 1);
+  };
+  const handleClick = () => {
+    // update cart
+    console.log(product, quantity, color, size);
+    dispatch(addProduct({ ...product, quantity, color, size }));
   };
   return (
     <Container>
@@ -172,7 +181,7 @@ export const SingleProductPage = () => {
                 style={{ cursor: "pointer" }}
               />
             </QuantityContainer>
-            <Button>Add to Cart</Button>
+            <Button onClick={handleClick}>Add to Cart</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
