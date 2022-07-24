@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { userRequest } from "../requestMethods";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -43,6 +46,11 @@ const Button = styled.button`
 `;
 
 export const Register = () => {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
   return (
     <Container>
       <Wrapper>
@@ -50,22 +58,45 @@ export const Register = () => {
         <Form>
           <Input type="text" placeholder="First Name" required />
           <Input placeholder="Last Name" required />
-          <Input placeholder="UserName" />
+          <Input
+            placeholder="UserName"
+            onChange={(e) => setUserName(e.target.value)}
+          />
 
-          <Input type="email" placeholder="Email" required />
+          <Input
+            type="email"
+            placeholder="Email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Input
             type="password"
             minLength="4"
             maxLength="7"
             placeholder="Password"
             required
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Input type="password" placeholder="Confirm Password" required />
           <Agreement>
             By Creating an Account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button
+            onClick={async (e) => {
+              e.preventDefault();
+              const result = await userRequest.post("/register", {
+                username: userName,
+                email: email,
+                password: password,
+              });
+              if (result) {
+                navigate("/login");
+              }
+            }}
+          >
+            CREATE
+          </Button>
         </Form>
       </Wrapper>
     </Container>
