@@ -38,7 +38,7 @@ Start the server
 ## Test Credentials
 
 - Username: admin
-- password: admin123
+- password: admin12
 
 Or you can signup and create a new ID.
 
