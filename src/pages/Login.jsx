@@ -99,7 +99,7 @@ export const Login = () => {
             document.getElementById("username").value = "admin";
             document.getElementById("password").value = "admin123";
             setUsername("admin");
-            setPassword("admin123");
+            setPassword("admin12");
           }}
         >
           Autofill with Test Credentials
